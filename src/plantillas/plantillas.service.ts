@@ -10,6 +10,7 @@ export class PlantillasService {
   constructor(
     @InjectModel(Plantilla.name) private plantillaModel: Model<Plantilla>,
   ) {}
+
   create(createPlantillaDto: CreatePlantillaDto) {
     const createdPlantilla = new this.plantillaModel(createPlantillaDto);
     return createdPlantilla.save();

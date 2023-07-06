@@ -20,6 +20,7 @@ export class PlantillasController {
 
   @Post()
   async create(@Body() createPlantillaDto: CreatePlantillaDto) {
+    console.log(createPlantillaDto);
     try {
       return await this.plantillasService.create(createPlantillaDto);
     } catch (error) {
