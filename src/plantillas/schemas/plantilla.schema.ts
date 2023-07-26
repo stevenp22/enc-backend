@@ -1,5 +1,5 @@
 import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
-import { pregunta } from './pregunta.entity';
+import { categoria } from './categoria.entity';
 
 @Schema({ timestamps: true })
 export class Plantilla {
@@ -21,7 +21,13 @@ export class Plantilla {
     required: true,
     trim: true,
   })
-  preguntas: pregunta[];
+  tipo: string;
+
+  @Prop({
+    required: true,
+    trim: true,
+  })
+  categorias: categoria[];
 }
 
 export const PlantillaSchema = SchemaFactory.createForClass(Plantilla);

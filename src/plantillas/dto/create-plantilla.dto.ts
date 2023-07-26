@@ -1,5 +1,5 @@
 import { IsString, IsNotEmpty } from 'class-validator';
-import { pregunta } from '../schemas/pregunta.entity';
+import { categoria } from '../schemas/categoria.entity';
 
 export class CreatePlantillaDto {
   @IsString()
@@ -8,6 +8,9 @@ export class CreatePlantillaDto {
   @IsString()
   @IsNotEmpty()
   empresa: string;
+  @IsString()
   @IsNotEmpty()
-  preguntas: pregunta[];
+  tipo: string;
+  @IsNotEmpty()
+  categorias: categoria[];
 }
