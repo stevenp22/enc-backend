@@ -1,15 +1,17 @@
 import { PartialType } from '@nestjs/mapped-types';
 import { CreateEncuestadoDto } from './create-encuestado.dto';
 import { IsString, IsOptional } from 'class-validator';
-import { respuesta } from '../schemas/respuesta.entity';
 
 export class UpdateEncuestadoDto extends PartialType(CreateEncuestadoDto) {
   @IsString()
   @IsOptional()
-  encuesta: string;
+  nombre: string;
   @IsString()
   @IsOptional()
-  nombre: string;
+  empresa: string;
+  @IsString()
+  @IsOptional()
+  nombreEncuestado: string;
   @IsString()
   @IsOptional()
   cargo: string;
@@ -20,5 +22,5 @@ export class UpdateEncuestadoDto extends PartialType(CreateEncuestadoDto) {
   @IsOptional()
   ciudad: string;
   @IsOptional()
-  respuestas: respuesta[];
+  categorias: [];
 }

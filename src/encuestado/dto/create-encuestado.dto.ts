@@ -1,13 +1,15 @@
 import { IsString, IsNotEmpty } from 'class-validator';
-import { respuesta } from '../schemas/respuesta.entity';
 
 export class CreateEncuestadoDto {
   @IsString()
   @IsNotEmpty()
-  encuesta: string;
+  nombre: string;
   @IsString()
   @IsNotEmpty()
-  nombre: string;
+  empresa: string;
+  @IsString()
+  @IsNotEmpty()
+  nombreEncuestado: string;
   @IsString()
   @IsNotEmpty()
   cargo: string;
@@ -18,5 +20,5 @@ export class CreateEncuestadoDto {
   @IsNotEmpty()
   ciudad: string;
   @IsNotEmpty()
-  respuestas: respuesta[];
+  categorias: [];
 }

@@ -7,13 +7,19 @@ export class Encuestado {
     required: true,
     trim: true,
   })
-  encuesta: string;
+  nombre: string;
 
   @Prop({
     required: true,
     trim: true,
   })
-  nombre: string;
+  empresa: string;
+
+  @Prop({
+    required: true,
+    trim: true,
+  })
+  nombreEncuestado: string;
 
   @Prop({
     required: true,
@@ -37,7 +43,12 @@ export class Encuestado {
     required: true,
     trim: true,
   })
-  respuestas: respuesta[];
+  categorias: [
+    {
+      nombre: string;
+      respuestas: respuesta[];
+    },
+  ];
 }
 
 export const EncuestadoSchema = SchemaFactory.createForClass(Encuestado);
