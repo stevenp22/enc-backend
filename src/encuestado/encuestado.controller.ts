@@ -43,6 +43,17 @@ export class EncuestadoController {
     return encuestado;
   }
 
+  @Post('buscar-por-nombre')
+  async findByNombre(@Body() nombreObj: { nombre: string }) {
+    const encuestados = await this.encuestadoService.findByNombre(nombreObj);
+    if (!encuestados || encuestados.length === 0) {
+      throw new NotFoundException(
+        'No se encontraron encuestados con ese nombre',
+      );
+    }
+    return encuestados;
+  }
+
   @Patch(':id')
   async update(
     @Param('id') id: string,

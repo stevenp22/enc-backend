@@ -24,6 +24,11 @@ export class EncuestadoService {
     return this.encuestadoModel.findById(id);
   }
 
+  findByNombre(nombreObj: { nombre: string }) {
+    const { nombre } = nombreObj;
+    return this.encuestadoModel.find({ nombre });
+  }
+
   update(id: string, updateEncuestadoDto: UpdateEncuestadoDto) {
     return this.encuestadoModel.findByIdAndUpdate(id, updateEncuestadoDto, {
       new: true,
