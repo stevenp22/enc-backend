@@ -9,10 +9,15 @@ import {
   ConflictException,
   NotFoundException,
   HttpCode,
+  UseInterceptors,
+  UploadedFile,
+  ParseFilePipeBuilder,
+  HttpStatus,
 } from '@nestjs/common';
 import { PlantillasService } from './plantillas.service';
 import { CreatePlantillaDto } from './dto/create-plantilla.dto';
 import { UpdatePlantillaDto } from './dto/update-plantilla.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('plantillas')
 export class PlantillasController {
@@ -29,6 +34,27 @@ export class PlantillasController {
       }
       throw error;
     }
+  }
+
+  @Post('upload')
+  @UseInterceptors(FileInterceptor('imagen'))
+  uploadFileAndPassValidation(
+    @UploadedFile(
+      new ParseFilePipeBuilder()
+        .addFileTypeValidator({
+          fileType: 'jpg|jpeg|png|gif',
+        })
+        .addMaxSizeValidator({
+          maxSize: 1000000,
+        })
+        .build({
+          errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY,
+        }),
+    )
+    imagen?: Express.Multer.File,
+  ) {
+    console.log(imagen);
+    return imagen.filename;
   }
 
   @Get()

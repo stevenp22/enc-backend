@@ -10,6 +10,13 @@ export class Usuario {
   })
   email: string;
   @Prop({
+    unique: true,
+    dropDups: true,
+    required: true,
+    trim: true,
+  })
+  username: string;
+  @Prop({
     required: true,
     trim: true,
   })

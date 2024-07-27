@@ -28,6 +28,11 @@ export class Plantilla {
     trim: true,
   })
   categorias: categoria[];
+  @Prop({
+    required: true,
+    trim: true,
+  })
+  imagen: string;
 }
 
 export const PlantillaSchema = SchemaFactory.createForClass(Plantilla);

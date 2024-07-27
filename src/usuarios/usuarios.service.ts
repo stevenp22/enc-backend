@@ -12,10 +12,12 @@ export class UsuariosService {
     @InjectModel(Usuario.name) private usuarioModel: Model<Usuario>,
   ) {}
 
-  create(createUsuarioDto: CreateUsuarioDto) {
-    const hashedPassword = bcrypt.hash(createUsuarioDto.password, 10);
+  async create(createUsuarioDto: CreateUsuarioDto) {
+    console.log(createUsuarioDto);
+    const hashedPassword = await bcrypt.hash(createUsuarioDto.password, 10);
     const createdUsuario = new this.usuarioModel({
-      data: { ...createUsuarioDto, password: hashedPassword },
+      ...createUsuarioDto,
+      password: hashedPassword,
     });
     return createdUsuario.save();
   }
@@ -26,6 +28,14 @@ export class UsuariosService {
 
   findOne(id: string) {
     return this.usuarioModel.findById(id);
+  }
+
+  findOneEmail(email: string) {
+    return this.usuarioModel.find((usuario) => usuario.email === email);
+  }
+
+  findOneUsername(username: string) {
+    return this.usuarioModel.find((usuario) => usuario.username === username);
   }
 
   update(id: string, updateUsuarioDto: UpdateUsuarioDto) {

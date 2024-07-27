@@ -9,6 +9,7 @@ import {
   ConflictException,
   NotFoundException,
   HttpCode,
+  Res,
 } from '@nestjs/common';
 import { EncuestadoService } from './encuestado.service';
 import { CreateEncuestadoDto } from './dto/create-encuestado.dto';
@@ -29,6 +30,12 @@ export class EncuestadoController {
       }
       throw error;
     }
+  }
+
+  @Get('upload/:id')
+  async serveImagen(@Param('id') id, @Res() res): Promise<any> {
+    res.sendFile(id, { root: 'public/uploads' });
+    console.log('imagen enviada');
   }
 
   @Get()

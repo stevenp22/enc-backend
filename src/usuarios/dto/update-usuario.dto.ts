@@ -8,6 +8,9 @@ export class UpdateUsuarioDto extends PartialType(CreateUsuarioDto) {
   email: string;
   @IsString()
   @IsOptional()
+  username: string;
+  @IsString()
+  @IsOptional()
   password: string;
   @IsString()
   @IsOptional()

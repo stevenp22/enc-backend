@@ -13,4 +13,6 @@ export class CreatePlantillaDto {
   tipo: string;
   @IsNotEmpty()
   categorias: categoria[];
+  @IsString()
+  imagen: string;
 }
